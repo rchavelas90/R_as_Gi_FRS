@@ -1,3 +1,5 @@
+#página https://sites.google.com/site/rodriguezsanchezf/resources/rgis
+
 install.packages("raster")
 install.packages("rasterVis")
 install.packages("maptools")
@@ -9,13 +11,16 @@ library(sp)
 library(raster)
 library(rasterVis)
 library(maptools)
-library(rworldmap)
+
+
 library(googleVis)
 library(googleMaps)
 library(dismo)
 
+library(rworldmap)
 newmap <- getMap(resolution="coarse")
 plot(newmap)
+
 mapCountryData()
 mapCountryData(mapRegion="europe")
 mapGriddedData()

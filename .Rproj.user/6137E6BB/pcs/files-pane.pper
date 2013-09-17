@@ -1,0 +1,17 @@
+{
+    "path" : "~/Rwork1/GitLocal/R_as_Gi_FRS/GPX",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 1
+        },
+        {
+            "ascending" : false,
+            "columnIndex" : 3
+        },
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

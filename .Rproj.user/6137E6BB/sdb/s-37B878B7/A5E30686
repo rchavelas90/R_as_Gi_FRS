@@ -1,0 +1,15 @@
+{
+    "contents" : "#página https://sites.google.com/site/rodriguezsanchezf/resources/rgis\n\ninstall.packages(\"raster\")\ninstall.packages(\"rasterVis\")\ninstall.packages(\"maptools\")\ninstall.packages(\"rworldmap\")\ninstall.packages(\"googleMaps\") ##no funciona para versión 3\ninstall.packages(\"dismo\")\n\nlibrary(sp)\nlibrary(raster)\nlibrary(rasterVis)\nlibrary(maptools)\n\n\nlibrary(googleVis)\nlibrary(googleMaps)\nlibrary(dismo)\n\nlibrary(rworldmap)\nnewmap <- getMap(resolution=\"coarse\")\nplot(newmap)\n\nmapCountryData()\nmapCountryData(mapRegion=\"europe\")\nmapGriddedData()\nmapGriddedData(mapRegion=\"europe\")\n\ndata(Exports)\nView(Exports)\nGeo <- gvisGeoMap(Exports,locationvar=\"Country\",\n                  numvar=\"Profit\",\n                  options=list(height=400,dataMode='regions'))\n\nGeo <- gvisGeoMap(Exports, locationvar=\"Country\", numvar=\"Profit\", \n                  options=list(height=400, dataMode='regions'))\n\nplot(Geo)\ndata(Andrew)\n?Andrew\n\nM1 <- gvisMap(Andrew,\"LatLong\",\"Tip\",\n              options=list(showTip=TRUE,showLine=FALSE,\n                           enableScrollWheel=TRUE,\n                           mapType='satellite',\n                           useMapTypeControl=TRUE,\n                           width=800,\n                           height=400))\n\nM1 <- gvisMap(Andrew, \"LatLong\" , \"Tip\",\n              options=list(showTip=TRUE, showLine=F,\n                           enableScrollWheel=TRUE,\n                           mapType='satellite', \n                           useMapTypeControl=TRUE, \n                           width=800,height=400))\nplot(M1)\n\nAndrew\n\nmymap <- gmap(\"México\")\nplot(mymap)\n?gmap\n\nmymap <- gmap(\"México\",type=\"satellite\")\nplot(mymap)\n\nmymap <- gmap(\"México\",type=\"satellite\",exp=3)\nplot(mymap)\n\nmymap <- gmap(\"Europe\",exp=1)\nplot(mymap)",
+    "created" : 1378648127115.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1149050068",
+    "id" : "A5E30686",
+    "lastKnownWriteTime" : 1379221688,
+    "path" : "~/Rwork1/GitLocal/R_as_Gi_FRS/tutor.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
