@@ -1,8 +1,9 @@
 ##http://cnr.lwlss.net/GarminR/
 # Read in xml files from Garmin ForeRunner
 library(XML)
-
+setwd("GPX")
 filename="activity_61755378"
+
 
 doc=xmlParse(paste(filename,".gpx",sep=""),useInternalNodes=TRUE)
 
@@ -10,6 +11,7 @@ doc=xmlParse(paste(filename,".gpx",sep=""),useInternalNodes=TRUE)
 # the data which we can pass to xmlToDataFrame
 top=xmlRoot(doc)
 title=toString.XMLNode(top[[2]][[1]][[1]])
+
 description=toString.XMLNode(top[[2]][[2]][[1]])
 data=toString.XMLNode(top[[2]][[3]])
 # All these tests in case description node is empty!
@@ -20,6 +22,7 @@ if(data=="NULL") data=toString.XMLNode(top[[2]][[1]])
 
 # Fill a data frame with interesting data
 df=as.data.frame(xmlToDataFrame(data,c("numeric", "character", "integer")))
+#Get the attributes of the XMLNode
 if(toString.XMLNode(top[[2]][[3]])=="NULL") {
  if(toString.XMLNode(top[[2]][[2]])=="NULL") {
   attribs=xmlSApply(top[[2]][[1]],xmlAttrs)
@@ -29,18 +32,36 @@ if(toString.XMLNode(top[[2]][[3]])=="NULL") {
 }else{
  attribs=xmlSApply(top[[2]][[3]],xmlAttrs)
 }
+
 df$lon=as.numeric(attribs[1,])
 df$lat=as.numeric(attribs[2,])
 colnames(df)=c("Elevation","DateTime","HeartRate","Longitude","Latitude")
+str(df)
 df$Elevation=as.numeric(df$Elevation)
 df$HeartRate=as.integer(df$HeartRate)
 df$DateTime=as.character(df$DateTime)
 # Convert timestamp to number of seconds since start of run
+
 date=substr(df$DateTime[1],1,10)
 Time=substr(df$DateTime,12,19)
 T0=strptime(Time[1],"%H:%M:%S")
 Time=as.numeric(strptime(Time,"%H:%M:%S")-T0)
 df$Seconds=Time
+
+##R#Look for a pattern in the time of the records
+rm(dfRic)
+dfRic <- data.frame(Time=Time,Delta=0)
+head(dfRic,10)
+i <- 1
+for(i in 1:(length(dfRic[[1]])-1)){
+dfRic[i+1,2] <- dfRic[i+1,1]-dfRic[i,1]
+head(dfRic,10)
+}
+head(dfRic,12)
+hist(dfRic$Delta)
+hist(dfRic$Delta)
+plot(dfRic$Delta,type="l")
+
 
 # Initialise columns
 df$dNorth=0; df$dEast=0; df$dUp=0;
