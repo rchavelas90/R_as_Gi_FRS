@@ -130,12 +130,12 @@ readGPX <- function(
 
 # enf of script;
 getwd()
-data <- readGPX("2013_09_13T132422Z.gpx",metadata=F,bounds=F,waypoints=F,route=F)
+data <- readGPX("2013-09-17-19-53.gpx",metadata=F,bounds=F,waypoints=F,route=F)
 setwd("GPX")
 
 str(data)
 str(data$tracks)
-data2 <- data$tracks[[1]]$`GPX Master Track - 13/09/2013 08:24`
+data2 <- data$tracks[[1]][[1]]
 head(data2)
 head(data2$time)
 data2$delta <- c()
